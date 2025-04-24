@@ -1,0 +1,87 @@
+@import url("tokens.css");
+
+body.background {
+    background-color: var(--color-background);
+    margin: 0;
+    min-height: 100vh;
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+}
+
+h1, h2 {
+    color: var(--color-text-title);
+    font-family: "Underdog", sans-serif;
+}
+
+h2 {
+    font-size: 1.2rem;
+}
+
+p, dl, ul {
+    color: var(--color-text-body);
+    font-family: "Open Sans", sans-serif;
+}
+
+.header-container {
+    background-color: var(--color-background-header);
+    padding: 1rem;
+    max-width: 400px;
+}
+
+dt {
+    font-weight: bold;
+    color: var(--color-text-list);
+}
+
+.main-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+    padding: 2rem;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.main-grid .left-column,
+.main-grid .right-column,
+.main-grid .content-column {
+    background: #ffffff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+}
+
+.main-grid ul {
+    list-style-type: disc;
+    margin: 1rem 0;
+    padding-left: 2rem;
+}
+
+.main-grid dl {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .main-grid {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+    }
+
+    .header-container {
+        max-width: 100%;
+    }
+
+    .main-grid .left-column,
+    .main-grid .right-column,
+    .main-grid .content-column {
+        padding: 1rem;
+    }
+}

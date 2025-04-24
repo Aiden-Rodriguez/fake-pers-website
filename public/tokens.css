@@ -1,0 +1,9 @@
+:root {
+    --color-text-title: rgb(193, 215, 167);
+    --color-text-body: rgb(36, 63, 15);
+    --color-background: rgb(209, 199, 184);
+    --color-background-header: rgb(60, 80, 68);
+    --color-text-list: rgb(41, 84, 4);
+    --color-header-text: white;
+    --color-navbar-hover: #ffcb6b;
+}
