@@ -3,68 +3,73 @@ const navLinks = [
   { href: 'hobbies.html', text: 'Hobbies' },
 ];
 
-function createLinkElement({ href, text }) {
-  const link = document.createElement('a');
-  link.href = href;
-  link.textContent = text;
-  return link;
-}
-
 function createNavbar() {
   const nav = document.createElement('nav');
   nav.className = 'navbar';
+  nav.innerHTML = `
+    <div class="navbar-title">Aiden Rodriguez</div>
+    <div class="navbar-right">
+      <label class="dark-mode-toggle">
+        <input type="checkbox" autocomplete="off">
+        Dark mode
+      </label>
+      <button class="navbar-toggle">Menu</button>
+    </div>
+    <div class="navbar-links">
+      ${navLinks.map(link => `<a href="${link.href}">${link.text}</a>`).join('')}
+    </div>
+  `;
 
-  const titleDiv = document.createElement('div');
-  titleDiv.className = 'navbar-title';
-  titleDiv.textContent = 'Aiden Rodriguez';
+  nav.querySelector('.navbar-toggle').addEventListener('click', toggleMenuVisibility);
+  nav.querySelector('.dark-mode-toggle input').addEventListener('change', toggleDarkMode);
 
-  const linksDiv = document.createElement('div');
-  linksDiv.className = 'navbar-links';
-
-  navLinks.forEach(linkData => {
-      linksDiv.appendChild(createLinkElement(linkData));
-  });
-
-  const mobileButton = document.createElement('button');
-  mobileButton.className = 'navbar-toggle';
-  mobileButton.textContent = 'Menu';
-  mobileButton.addEventListener('click', toggleMenuVisibility);
-
-  nav.appendChild(titleDiv);
-  nav.appendChild(mobileButton);
-  nav.appendChild(linksDiv);
-
+  const isDarkMode = localStorage.getItem('darkMode') === 'true';
+  nav.querySelector('.dark-mode-toggle input').checked = isDarkMode;
   return nav;
 }
 
 function toggleMenuVisibility() {
-  const linksDiv = document.querySelector('.navbar-links');
-  linksDiv.classList.toggle('active');
+  document.querySelector('.navbar-links').classList.toggle('active');
+}
+
+function toggleDarkMode(e) {
+  const isDarkMode = e.target.checked;
+  document.body.classList.toggle('dark-mode', isDarkMode);
+  // console.log(`Dark mode is ${isDarkMode ? 'enabled' : 'disabled'}`);
+  if (isDarkMode) {
+    document.body.classList.add('dark-mode');
+  } else {
+    document.body.classList.remove('dark-mode');
+  }
+  localStorage.setItem('darkMode', isDarkMode);
 }
 
 function insertNavbar() {
   const newNavbar = createNavbar();
   const existingNav = document.querySelector('nav.navbar');
   if (existingNav) {
-      existingNav.replaceWith(newNavbar);
+    existingNav.replaceWith(newNavbar);
   } else {
-      document.body.prepend(newNavbar);
+    document.body.prepend(newNavbar);
+  }
+
+  const isDarkMode = localStorage.getItem('darkMode') === 'true';
+  if (isDarkMode) {
+    document.body.classList.add('dark-mode');
+  } else {
+    document.body.classList.remove('dark-mode');
   }
 }
 
 function setupBodyClickListener() {
   document.addEventListener('click', (e) => {
-      const navbar = document.querySelector('.navbar');
-      const linksDiv = document.querySelector('.navbar-links');
-
-      if (linksDiv.classList.contains('active')) {
-          // Close menu if click is outside navbar
-          if (!navbar.contains(e.target)) {
-              linksDiv.classList.remove('active');
-          }
-      }
+    const navbar = document.querySelector('.navbar');
+    const linksDiv = document.querySelector('.navbar-links');
+    if (linksDiv.classList.contains('active') && !navbar.contains(e.target)) {
+      linksDiv.classList.remove('active');
+    }
   });
 }
 
-  insertNavbar();
-  setupBodyClickListener();
+insertNavbar();
+setupBodyClickListener();

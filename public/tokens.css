@@ -1,9 +1,21 @@
-:root {
+body {
     --color-text-title: rgb(193, 215, 167);
     --color-text-body: rgb(36, 63, 15);
     --color-background: rgb(209, 199, 184);
     --color-background-header: rgb(60, 80, 68);
     --color-text-list: rgb(41, 84, 4);
     --color-header-text: white;
+    --color-textbox: white;
     --color-navbar-hover: #ffcb6b;
+}
+
+body.dark-mode {
+    --color-text-title: rgb(221, 245, 202);
+    --color-text-body: rgb(200, 230, 190);
+    --color-background: rgb(30, 30, 28);
+    --color-background-header: rgb(45, 60, 50);
+    --color-text-list: rgb(160, 220, 120);
+    --color-header-text: rgb(255, 255, 255);
+    --color-textbox: rgb(50, 50, 48);
+    --color-navbar-hover: #ffd27a;
 }

@@ -45,10 +45,11 @@ dt {
 .main-grid .left-column,
 .main-grid .right-column,
 .main-grid .content-column {
-    background: #ffffff;
+    background: var(--color-textbox);
     padding: 1.5rem;
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+
 }
 
 .contact-grid {
@@ -67,6 +68,10 @@ dt {
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 0.5rem;
+}
+
+i {
+    color: var(--color-text-list);
 }
 
 @media (max-width: 768px) {
